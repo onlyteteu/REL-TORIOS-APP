@@ -1,0 +1,27 @@
+[project]
+name = "relatorios-rurais"
+version = "0.1.0"
+description = "Gerador CLI de relatorios de visita rural em Excel a partir de anotacoes brutas."
+requires-python = ">=3.11"
+dependencies = [
+  "openpyxl>=3.1.2",
+  "pydantic>=2.0",
+  "PyYAML>=6.0",
+  "Pillow>=10.0",
+  "streamlit>=1.36",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+]
+
+[project.scripts]
+relatorio-rural = "relatorios_rurais.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

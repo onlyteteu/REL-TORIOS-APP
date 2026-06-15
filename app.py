@@ -29,8 +29,20 @@ def find_template() -> Path | None:
     if not parts:
         return None
     payload = "".join(part.read_text(encoding="utf-8").strip() for part in parts)
-    RECONSTRUCTED_TEMPLATE.write_bytes(base64.b64decode(payload))
+    try:
+        RECONSTRUCTED_TEMPLATE.write_bytes(base64.b64decode(payload, validate=True))
+    except Exception:
+        return None
     return RECONSTRUCTED_TEMPLATE
+
+
+def save_uploaded_template(uploaded_template) -> Path | None:
+    if uploaded_template is None:
+        return None
+    OUTPUT_DIR.mkdir(exist_ok=True)
+    path = OUTPUT_DIR / "_modelo_enviado.xlsx"
+    path.write_bytes(uploaded_template.getbuffer())
+    return path
 
 
 def area_value(report: RuralVisitReport, field: str) -> str:
@@ -74,8 +86,11 @@ def main() -> None:
 
     template_path = find_template()
     if template_path is None:
-        st.error("Arquivo modelo não encontrado na pasta do projeto.")
-        st.stop()
+        st.info("Envie o arquivo modelo .xlsx para gerar o relatório.")
+        uploaded_template = st.file_uploader("Arquivo modelo", type=["xlsx"])
+        template_path = save_uploaded_template(uploaded_template)
+        if template_path is None:
+            st.stop()
 
     notes = st.text_area("Anotações da visita", height=260, key="notes")
 

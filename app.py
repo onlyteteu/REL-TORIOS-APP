@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import base64
 import sys
 import tempfile
 
@@ -16,11 +17,20 @@ from relatorios_rurais.service import analyze_notes, generate_report_from_notes
 
 CELL_MAP_PATH = ROOT / "config" / "cell_map.yaml"
 OUTPUT_DIR = ROOT / "outputs"
+TEMPLATE_PARTS_DIR = ROOT / "template_parts"
+RECONSTRUCTED_TEMPLATE = ROOT / "RELATÓRIO DE VISITA - MODELO.xlsx"
 
 
 def find_template() -> Path | None:
     matches = sorted(ROOT.glob("*MODELO.xlsx"))
-    return matches[0] if matches else None
+    if matches:
+        return matches[0]
+    parts = sorted(TEMPLATE_PARTS_DIR.glob("modelo_*.b64"))
+    if not parts:
+        return None
+    payload = "".join(part.read_text(encoding="utf-8").strip() for part in parts)
+    RECONSTRUCTED_TEMPLATE.write_bytes(base64.b64decode(payload))
+    return RECONSTRUCTED_TEMPLATE
 
 
 def area_value(report: RuralVisitReport, field: str) -> str:

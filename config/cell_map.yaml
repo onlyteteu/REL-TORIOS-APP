@@ -1,0 +1,91 @@
+# Mapeamento do arquivo "RELATÓRIO DE VISITA - MODELO.xlsx".
+# Aba identificada no modelo: Plan1
+#
+# Células confirmadas pela comparação entre o modelo em branco e o exemplo
+# "RELATÓRIO DE VISITA - VANDERLEI OLIVEIRA.xlsx".
+
+workbook:
+  output_pattern: "RELATÓRIO DE VISITA - {client_name}.xlsx"
+  forbidden_values:
+    - "Vanderlei"
+    - "Vanderlei de Oliveira"
+    - "Fazenda sapeiro"
+    - "Fazenda Sapeiro"
+    - "Anápolis-GO"
+
+report_sheet:
+  sheet_name: "Plan1"
+
+  # Limpa campos variáveis do relatório antes do preenchimento, preservando
+  # formatos, bordas, mesclagens e estrutura da planilha.
+  clear_ranges:
+    - "B4:I4"
+    - "C6:K7"
+    - "A18:K18"
+    - "A27:E32"
+    - "A40:M54"
+    - "D93:K94"
+    - "D105:K106"
+    - "B181:K186"
+    - "B190:K194"
+
+  fields:
+    client_name:
+      cell: "B4"
+      missing: "Não informado"
+    municipality_uf:
+      cell: "C6"
+      missing: "Não informado"
+    discrimination:
+      cell: "A18"
+      missing: "Não informado"
+    total_area_hectares:
+      cell: "D18"
+      missing: ""
+    pasture_area_hectares:
+      cell: "E18"
+      missing: ""
+    crop_area_hectares:
+      cell: "F18"
+      missing: ""
+    main_activity:
+      cell: "I18"
+      missing: "Não informado"
+    main_cultures:
+      cell: "K18"
+      missing: "Não informado"
+    infrastructure_text:
+      cell: "A27"
+      missing: "Não informado"
+    activity_comments:
+      cell: "D93"
+      missing: "Não informado"
+    summary_comments:
+      cell: "D105"
+      missing: "Não informado"
+    other_comments:
+      cell: "B181"
+      missing: "Não informado"
+    final_conclusion:
+      cell: "B190"
+      missing: "Não informado"
+
+  machine_table:
+    start_row: 40
+    max_rows: 15
+    columns:
+      description: "A"
+      manufacturer: "E"
+      model: "F"
+
+photos:
+  sheet_name: "Plan1"
+  start_cell: "D209"
+  columns: 1
+  row_step: 19
+  col_step: 0
+  image_max_width_px: 640
+  image_max_height_px: 360
+  caption_row_offset: 18
+  caption_col_offset: 6
+  clear_existing_photos: true

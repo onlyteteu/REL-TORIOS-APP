@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Generated reports and local inspection files
+outputs/
+
+# Local/temporary files
+*.log
+.DS_Store
+Thumbs.db
+
+# Do not publish filled example reports with client data.
+*VANDERLEI*.xlsx
+*Vanderlei*.xlsx

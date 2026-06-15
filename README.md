@@ -35,30 +35,23 @@ http://localhost:8501
 
 Fluxo da tela:
 
-1. Cole as anotações.
-2. Clique em `Analisar`.
-3. Confira resumo e avisos.
-4. Faça upload das fotos, se houver.
-5. Clique em `Gerar relatório`.
-6. Baixe o Excel final.
+1. Envie o arquivo modelo `.xlsx`, se a tela pedir.
+2. Cole as anotações.
+3. Clique em `Analisar`.
+4. Confira resumo e avisos.
+5. Faça upload das fotos, se houver.
+6. Clique em `Gerar relatório`.
+7. Baixe o Excel final.
 
 ## Publicar para outra pessoa usar
 
 O caminho mais simples é Streamlit Community Cloud:
 
-1. Crie um repositório no GitHub.
-2. Envie estes arquivos/pastas:
-   - `app.py`
-   - `src/`
-   - `config/`
-   - `requirements.txt`
-   - `pyproject.toml`
-   - `RELATÓRIO DE VISITA - MODELO.xlsx`
-3. Não envie relatórios já preenchidos nem o exemplo `VANDERLEI`.
-4. Acesse `https://streamlit.io/cloud`.
-5. Conecte sua conta GitHub.
-6. Escolha o repositório, a branch e o arquivo principal `app.py`.
-7. Clique em `Deploy`.
+1. Acesse `https://streamlit.io/cloud`.
+2. Conecte sua conta GitHub.
+3. Escolha o repositório, a branch `main` e o arquivo principal `app.py`.
+4. Clique em `Deploy`.
+5. Ao abrir o app, envie o arquivo `RELATÓRIO DE VISITA - MODELO.xlsx` se ele for solicitado na tela.
 
 Para dados sensíveis, prefira repositório privado e app privado. Depois convide seu amigo pelo botão `Share` do Streamlit.
 
